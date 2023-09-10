@@ -1,20 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  SafeAreaView,
+  StatusBar,
+  View,
+  Text,
+  StyleSheet,
+  useColorScheme,
+} from "react-native";
 
-export default function App() {
+const App = () => {
+  const isDarkMode = useColorScheme();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView>
+      <StatusBar />
+      <View style={Styles.container}>
+        <Text
+          style={
+            isDarkMode === "dark" ? Styles.darkModeText : Styles.lightModeText
+          }
+        >
+          A Guide To Hooks {isDarkMode}
+        </Text>
+      </View>
+    </SafeAreaView>
   );
-}
+};
 
-const styles = StyleSheet.create({
+const Styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+  },
+  darkModeText: {
+    color: "#FFFFFF",
+  },
+  lightModeText: {
+    color: "#000000",
   },
 });
+export default App;
